@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="SettingsScene" extends="Group">
+
+  <interface>
+    <field id="closed"     type="boolean" value="false" />
+    <field id="saved"      type="boolean" value="false" />
+    <field id="keyMsg"     type="string"  value="" />
+    <field id="needsFocus" type="integer" value="0" />
+  </interface>
+
+  <script type="text/brightscript" uri="pkg:/source/RegistryUtils.brs" />
+  <script type="text/brightscript" uri="pkg:/components/SettingsScene.brs" />
+
+  <children>
+
+    <Rectangle id="settingsBg" width="1920" height="1080" color="#000000" />
+    <Rectangle id="hdrBar" width="1920" height="80" color="#111111" translation="[0,0]" />
+    <Label id="hdrTitle" text="NIGHTSCOUT VIEWER  -  SETTINGS"
+      translation="[60,22]" color="#FFFFFF" font="font:LargeBoldSystemFont" />
+
+    <!-- TABLE VIEW -->
+    <Label id="tblSubtitle" text="Select a row and press OK to edit"
+      translation="[60,98]" color="#666666" font="font:SmallSystemFont" />
+    <Label id="tblColNum"  text="#"      translation="[60,130]"  color="#444444" font="font:SmallestSystemFont" />
+    <Label id="tblColName" text="NAME"   translation="[110,130]" color="#444444" font="font:SmallestSystemFont" />
+    <Label id="tblColSrc"  text="SOURCE" translation="[400,130]" color="#444444" font="font:SmallestSystemFont" />
+    <Label id="tblColVal"  text="URL / USERNAME" translation="[560,130]" color="#444444" font="font:SmallestSystemFont" />
+    <Rectangle id="tblDivTop" width="1800" height="1" color="#222222" translation="[60,150]" />
+
+    <!-- Row highlight: rowBgs are behind labels, colored by BRS to show selection -->
+    <Rectangle id="cursor" width="1800" height="90" color="#000000" translation="[60,152]" />
+
+    <Rectangle id="rowBg0"   width="1800" height="90" color="#000000" translation="[60,152]" />
+    <Label id="rowNum0"  text="1" translation="[70,187]"  color="#666666" font="font:MediumSystemFont" />
+    <Label id="nameTxt0" text=""  translation="[110,187]" color="#FFFFFF" font="font:MediumSystemFont" width="270" />
+    <Label id="srcTxt0"  text=""  translation="[400,187]" color="#FF6B00" font="font:SmallSystemFont" width="140" />
+    <Label id="urlTxt0"  text=""  translation="[560,187]" color="#AAAAAA" font="font:MediumSystemFont" width="1280" />
+
+    <Rectangle id="rowBg1"   width="1800" height="90" color="#000000" translation="[60,244]" />
+    <Label id="rowNum1"  text="2" translation="[70,279]"  color="#666666" font="font:MediumSystemFont" />
+    <Label id="nameTxt1" text=""  translation="[110,279]" color="#FFFFFF" font="font:MediumSystemFont" width="270" />
+    <Label id="srcTxt1"  text=""  translation="[400,279]" color="#FF6B00" font="font:SmallSystemFont" width="140" />
+    <Label id="urlTxt1"  text=""  translation="[560,279]" color="#AAAAAA" font="font:MediumSystemFont" width="1280" />
+
+    <Rectangle id="rowBg2"   width="1800" height="90" color="#000000" translation="[60,336]" />
+    <Label id="rowNum2"  text="3" translation="[70,371]"  color="#666666" font="font:MediumSystemFont" />
+    <Label id="nameTxt2" text=""  translation="[110,371]" color="#FFFFFF" font="font:MediumSystemFont" width="270" />
+    <Label id="srcTxt2"  text=""  translation="[400,371]" color="#FF6B00" font="font:SmallSystemFont" width="140" />
+    <Label id="urlTxt2"  text=""  translation="[560,371]" color="#AAAAAA" font="font:MediumSystemFont" width="1280" />
+
+    <Rectangle id="rowBg3"   width="1800" height="90" color="#000000" translation="[60,428]" />
+    <Label id="rowNum3"  text="4" translation="[70,463]"  color="#666666" font="font:MediumSystemFont" />
+    <Label id="nameTxt3" text=""  translation="[110,463]" color="#FFFFFF" font="font:MediumSystemFont" width="270" />
+    <Label id="srcTxt3"  text=""  translation="[400,463]" color="#FF6B00" font="font:SmallSystemFont" width="140" />
+    <Label id="urlTxt3"  text=""  translation="[560,463]" color="#AAAAAA" font="font:MediumSystemFont" width="1280" />
+    <Rectangle id="tblDivBot" width="1800" height="1" color="#333333" translation="[60,522]" />
+    <Label id="tblHint"
+      text="UP/DOWN = select row   OK = edit   OPTIONS = save &amp; exit   BACK = exit without saving"
+      translation="[60,532]" color="#444444" font="font:SmallestSystemFont" />
+
+    <!-- EDIT VIEW -->
+    <Rectangle id="dlgAccent" width="1920" height="5" color="#FF6B00" translation="[0,80]" visible="false" />
+    <Label id="dlgTitle" text="EDITING ACCOUNT 1"
+      translation="[60,100]" color="#FF6B00" font="font:LargeBoldSystemFont" visible="false" />
+
+    <!-- Field 0: Name -->
+    <Label id="dlgNameLbl" text="NAME"
+      translation="[60,168]" color="#888888" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="dlgNameBox" width="500" height="58" color="#222222" translation="[60,184]" visible="false" />
+    <Label id="dlgNameTxt" text=""
+      translation="[74,200]" color="#FFFFFF" font="font:MediumSystemFont" width="472" visible="false" />
+
+    <!-- Field 1: Source type toggle -->
+    <Label id="dlgSrcLbl" text="SOURCE"
+      translation="[600,168]" color="#888888" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="dlgSrcBox" width="460" height="58" color="#222222" translation="[600,184]" visible="false" />
+    <Label id="dlgSrcTxt" text="Nightscout"
+      translation="[614,200]" color="#FFFFFF" font="font:MediumSystemFont" width="432" visible="false" />
+    <Label id="dlgSrcHint" text="LEFT/RIGHT to switch"
+      translation="[600,248]" color="#555555" font="font:SmallestSystemFont" visible="false" />
+
+    <!-- Nightscout fields (field 2 in NS mode) -->
+    <Label id="dlgUrlLbl" text="NIGHTSCOUT URL"
+      translation="[60,278]" color="#888888" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="dlgUrlBox" width="1800" height="58" color="#222222" translation="[60,294]" visible="false" />
+    <Label id="dlgUrlTxt" text=""
+      translation="[74,310]" color="#FFFFFF" font="font:MediumSystemFont" width="1772" visible="false" />
+
+    <!-- Dexcom fields (fields 2,3,4 in Dexcom mode) -->
+    <Label id="dlgUserLbl" text="DEXCOM USERNAME"
+      translation="[60,278]" color="#888888" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="dlgUserBox" width="860" height="58" color="#222222" translation="[60,294]" visible="false" />
+    <Label id="dlgUserTxt" text=""
+      translation="[74,310]" color="#FFFFFF" font="font:MediumSystemFont" width="832" visible="false" />
+
+    <Label id="dlgPassLbl" text="DEXCOM PASSWORD"
+      translation="[60,372]" color="#888888" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="dlgPassBox" width="860" height="58" color="#222222" translation="[60,388]" visible="false" />
+    <Label id="dlgPassTxt" text=""
+      translation="[74,404]" color="#FFFFFF" font="font:MediumSystemFont" width="832" visible="false" />
+
+    <Label id="dlgRegLbl" text="REGION"
+      translation="[960,372]" color="#888888" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="dlgRegBox" width="400" height="58" color="#222222" translation="[960,388]" visible="false" />
+    <Label id="dlgRegTxt" text="US"
+      translation="[974,404]" color="#FFFFFF" font="font:MediumSystemFont" width="372" visible="false" />
+    <Label id="dlgRegHint" text="LEFT/RIGHT to change"
+      translation="[960,452]" color="#555555" font="font:SmallestSystemFont" visible="false" />
+
+    <Label id="dlgHint" text=""
+      translation="[60,480]" color="#444444" font="font:SmallestSystemFont" visible="false" />
+
+    <Label id="statusMsg" text="" translation="[60,1010]" color="#00C853" font="font:MediumSystemFont" />
+
+  </children>
+
+</component>

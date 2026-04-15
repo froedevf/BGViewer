@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DexcomTask" extends="Task">
+  <interface>
+    <field id="baseUrl"    type="string"  value="" />
+    <field id="appId"      type="string"  value="" />
+    <field id="username"   type="string"  value="" />
+    <field id="password"   type="string"  value="" />
+    <field id="sessionId"  type="string"  value="" />
+    <field id="taskIndex"  type="integer" value="0" />
+    <field id="result"     type="string"  value="" />
+    <field id="newSession" type="string"  value="" />
+    <field id="fetchError" type="string"  value="" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/DexcomTask.brs" />
+</component>

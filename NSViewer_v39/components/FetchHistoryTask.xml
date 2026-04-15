@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="FetchHistoryTask" extends="Task">
+  <interface>
+    <field id="url"        type="string"  value="" />
+    <field id="taskIndex"  type="integer" value="0" />
+    <field id="result"     type="string"  value="" />
+    <field id="fetchError" type="string"  value="" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/FetchHistoryTask.brs" />
+</component>

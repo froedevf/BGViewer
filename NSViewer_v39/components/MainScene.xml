@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="MainScene" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/source/RegistryUtils.brs" />
+  <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
+  <children>
+
+    <Rectangle id="bg" width="1920" height="1080" color="#000000" />
+
+    <!-- Header -->
+    <Rectangle id="hdr" width="1920" height="80" color="#111111" translation="[0,0]" />
+    <Label id="titleLabel" text="NIGHTSCOUT VIEWER" translation="[60,22]" color="#FFFFFF" font="font:LargeBoldSystemFont" />
+    <Label id="clockLabel" text="" translation="[0,22]" width="1860" horizAlign="right" color="#666666" font="font:MediumSystemFont" />
+
+    <!-- Cards: up to 4, laid out dynamically in BRS -->
+
+    <!-- Card 0 -->
+    <Rectangle id="card0"    width="420" height="880" color="#111111" translation="[60,100]" visible="false" />
+    <Rectangle id="cardTop0" width="420" height="8"   color="#444444" translation="[60,100]" visible="false" />
+    <Label id="nameLabel0" text="" translation="[100,130]" color="#FFFFFF" font="font:LargeBoldSystemFont" visible="false" />
+    <Label id="sgvLabel0"  text="" translation="[100,200]" color="#FFFFFF" visible="false"><Font role="font" uri="pkg:/fonts/Roboto_Condensed-Bold.ttf" size="130" /></Label>
+    <Label id="unitLabel0"  text="mg/dL" translation="[100,390]" color="#444444" font="font:SmallSystemFont" visible="false" />
+    <!-- Arrow segments for trend indicator (card 0): shaft + 4 wing pieces -->
+    <Poster id="arrowImg0" uri="" width="100" height="100" translation="[100,420]" blendColor="#FFFFFF" visible="false" />
+    <Label id="rangeLabel0" text="" translation="[100,550]" color="#888888" font="font:SmallSystemFont" visible="false" />
+    <Label id="deltaLabel0" text="" translation="[100,590]" color="#666666" font="font:SmallSystemFont" visible="false" />
+    <Label id="ageLabel0"   text="" translation="[100,630]" color="#333333" font="font:SmallestSystemFont" visible="false" />
+    <!-- Graph area card 0: background + threshold lines + 36 dots -->
+    <Rectangle id="graphBg0"    width="380" height="160" color="#0A0A0A" translation="[80,680]" visible="false" />
+    <Rectangle id="graphHiLine0" width="380" height="1"  color="#332200" translation="[80,720]" visible="false" />
+    <Rectangle id="graphLoLine0" width="380" height="1"  color="#220033" translation="[80,820]" visible="false" />
+    <Label id="graphLabel0" text="3h" translation="[82,832]" color="#222222" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBar0_0"  width="8" height="2" color="#444444" translation="[82,838]" visible="false" />
+    <Rectangle id="graphBar0_1"  width="8" height="2" color="#444444" translation="[92,838]" visible="false" />
+    <Rectangle id="graphBar0_2"  width="8" height="2" color="#444444" translation="[102,838]" visible="false" />
+    <Rectangle id="graphBar0_3"  width="8" height="2" color="#444444" translation="[112,838]" visible="false" />
+    <Rectangle id="graphBar0_4"  width="8" height="2" color="#444444" translation="[122,838]" visible="false" />
+    <Rectangle id="graphBar0_5"  width="8" height="2" color="#444444" translation="[132,838]" visible="false" />
+    <Rectangle id="graphBar0_6"  width="8" height="2" color="#444444" translation="[142,838]" visible="false" />
+    <Rectangle id="graphBar0_7"  width="8" height="2" color="#444444" translation="[152,838]" visible="false" />
+    <Rectangle id="graphBar0_8"  width="8" height="2" color="#444444" translation="[162,838]" visible="false" />
+    <Rectangle id="graphBar0_9"  width="8" height="2" color="#444444" translation="[172,838]" visible="false" />
+    <Rectangle id="graphBar0_10" width="8" height="2" color="#444444" translation="[182,838]" visible="false" />
+    <Rectangle id="graphBar0_11" width="8" height="2" color="#444444" translation="[192,838]" visible="false" />
+    <Rectangle id="graphBar0_12" width="8" height="2" color="#444444" translation="[202,838]" visible="false" />
+    <Rectangle id="graphBar0_13" width="8" height="2" color="#444444" translation="[212,838]" visible="false" />
+    <Rectangle id="graphBar0_14" width="8" height="2" color="#444444" translation="[222,838]" visible="false" />
+    <Rectangle id="graphBar0_15" width="8" height="2" color="#444444" translation="[232,838]" visible="false" />
+    <Rectangle id="graphBar0_16" width="8" height="2" color="#444444" translation="[242,838]" visible="false" />
+    <Rectangle id="graphBar0_17" width="8" height="2" color="#444444" translation="[252,838]" visible="false" />
+    <Rectangle id="graphBar0_18" width="8" height="2" color="#444444" translation="[262,838]" visible="false" />
+    <Rectangle id="graphBar0_19" width="8" height="2" color="#444444" translation="[272,838]" visible="false" />
+    <Rectangle id="graphBar0_20" width="8" height="2" color="#444444" translation="[282,838]" visible="false" />
+    <Rectangle id="graphBar0_21" width="8" height="2" color="#444444" translation="[292,838]" visible="false" />
+    <Rectangle id="graphBar0_22" width="8" height="2" color="#444444" translation="[302,838]" visible="false" />
+    <Rectangle id="graphBar0_23" width="8" height="2" color="#444444" translation="[312,838]" visible="false" />
+    <Rectangle id="graphBar0_24" width="8" height="2" color="#444444" translation="[322,838]" visible="false" />
+    <Rectangle id="graphBar0_25" width="8" height="2" color="#444444" translation="[332,838]" visible="false" />
+    <Rectangle id="graphBar0_26" width="8" height="2" color="#444444" translation="[342,838]" visible="false" />
+    <Rectangle id="graphBar0_27" width="8" height="2" color="#444444" translation="[352,838]" visible="false" />
+    <Rectangle id="graphBar0_28" width="8" height="2" color="#444444" translation="[362,838]" visible="false" />
+    <Rectangle id="graphBar0_29" width="8" height="2" color="#444444" translation="[372,838]" visible="false" />
+    <Rectangle id="graphBar0_30" width="8" height="2" color="#444444" translation="[382,838]" visible="false" />
+    <Rectangle id="graphBar0_31" width="8" height="2" color="#444444" translation="[392,838]" visible="false" />
+    <Rectangle id="graphBar0_32" width="8" height="2" color="#444444" translation="[402,838]" visible="false" />
+    <Rectangle id="graphBar0_33" width="8" height="2" color="#444444" translation="[412,838]" visible="false" />
+    <Rectangle id="graphBar0_34" width="8" height="2" color="#444444" translation="[422,838]" visible="false" />
+    <Rectangle id="graphBar0_35" width="8" height="2" color="#444444" translation="[432,838]" visible="false" />
+
+    <!-- Card 1 -->
+    <Rectangle id="card1"    width="420" height="880" color="#111111" translation="[500,100]" visible="false" />
+    <Rectangle id="cardTop1" width="420" height="8"   color="#444444" translation="[500,100]" visible="false" />
+    <Label id="nameLabel1" text="" translation="[540,130]" color="#FFFFFF" font="font:LargeBoldSystemFont" visible="false" />
+    <Label id="sgvLabel1"  text="" translation="[540,200]" color="#FFFFFF" visible="false"><Font role="font" uri="pkg:/fonts/Roboto_Condensed-Bold.ttf" size="130" /></Label>
+    <Label id="unitLabel1"  text="mg/dL" translation="[540,390]" color="#444444" font="font:SmallSystemFont" visible="false" />
+    <Poster id="arrowImg1" uri="" width="100" height="100" translation="[100,420]" blendColor="#FFFFFF" visible="false" />
+    <Label id="rangeLabel1" text="" translation="[540,550]" color="#888888" font="font:SmallSystemFont" visible="false" />
+    <Label id="deltaLabel1" text="" translation="[540,590]" color="#666666" font="font:SmallSystemFont" visible="false" />
+    <Label id="ageLabel1"   text="" translation="[540,630]" color="#333333" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBg1"    width="380" height="160" color="#0A0A0A" translation="[520,680]" visible="false" />
+    <Rectangle id="graphHiLine1" width="380" height="1"  color="#332200" translation="[520,720]" visible="false" />
+    <Rectangle id="graphLoLine1" width="380" height="1"  color="#220033" translation="[520,820]" visible="false" />
+    <Label id="graphLabel1" text="3h" translation="[522,832]" color="#222222" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBar1_0"  width="8" height="2" color="#444444" translation="[522,838]" visible="false" />
+    <Rectangle id="graphBar1_1"  width="8" height="2" color="#444444" translation="[532,838]" visible="false" />
+    <Rectangle id="graphBar1_2"  width="8" height="2" color="#444444" translation="[542,838]" visible="false" />
+    <Rectangle id="graphBar1_3"  width="8" height="2" color="#444444" translation="[552,838]" visible="false" />
+    <Rectangle id="graphBar1_4"  width="8" height="2" color="#444444" translation="[562,838]" visible="false" />
+    <Rectangle id="graphBar1_5"  width="8" height="2" color="#444444" translation="[572,838]" visible="false" />
+    <Rectangle id="graphBar1_6"  width="8" height="2" color="#444444" translation="[582,838]" visible="false" />
+    <Rectangle id="graphBar1_7"  width="8" height="2" color="#444444" translation="[592,838]" visible="false" />
+    <Rectangle id="graphBar1_8"  width="8" height="2" color="#444444" translation="[602,838]" visible="false" />
+    <Rectangle id="graphBar1_9"  width="8" height="2" color="#444444" translation="[612,838]" visible="false" />
+    <Rectangle id="graphBar1_10" width="8" height="2" color="#444444" translation="[622,838]" visible="false" />
+    <Rectangle id="graphBar1_11" width="8" height="2" color="#444444" translation="[632,838]" visible="false" />
+    <Rectangle id="graphBar1_12" width="8" height="2" color="#444444" translation="[642,838]" visible="false" />
+    <Rectangle id="graphBar1_13" width="8" height="2" color="#444444" translation="[652,838]" visible="false" />
+    <Rectangle id="graphBar1_14" width="8" height="2" color="#444444" translation="[662,838]" visible="false" />
+    <Rectangle id="graphBar1_15" width="8" height="2" color="#444444" translation="[672,838]" visible="false" />
+    <Rectangle id="graphBar1_16" width="8" height="2" color="#444444" translation="[682,838]" visible="false" />
+    <Rectangle id="graphBar1_17" width="8" height="2" color="#444444" translation="[692,838]" visible="false" />
+    <Rectangle id="graphBar1_18" width="8" height="2" color="#444444" translation="[702,838]" visible="false" />
+    <Rectangle id="graphBar1_19" width="8" height="2" color="#444444" translation="[712,838]" visible="false" />
+    <Rectangle id="graphBar1_20" width="8" height="2" color="#444444" translation="[722,838]" visible="false" />
+    <Rectangle id="graphBar1_21" width="8" height="2" color="#444444" translation="[732,838]" visible="false" />
+    <Rectangle id="graphBar1_22" width="8" height="2" color="#444444" translation="[742,838]" visible="false" />
+    <Rectangle id="graphBar1_23" width="8" height="2" color="#444444" translation="[752,838]" visible="false" />
+    <Rectangle id="graphBar1_24" width="8" height="2" color="#444444" translation="[762,838]" visible="false" />
+    <Rectangle id="graphBar1_25" width="8" height="2" color="#444444" translation="[772,838]" visible="false" />
+    <Rectangle id="graphBar1_26" width="8" height="2" color="#444444" translation="[782,838]" visible="false" />
+    <Rectangle id="graphBar1_27" width="8" height="2" color="#444444" translation="[792,838]" visible="false" />
+    <Rectangle id="graphBar1_28" width="8" height="2" color="#444444" translation="[802,838]" visible="false" />
+    <Rectangle id="graphBar1_29" width="8" height="2" color="#444444" translation="[812,838]" visible="false" />
+    <Rectangle id="graphBar1_30" width="8" height="2" color="#444444" translation="[822,838]" visible="false" />
+    <Rectangle id="graphBar1_31" width="8" height="2" color="#444444" translation="[832,838]" visible="false" />
+    <Rectangle id="graphBar1_32" width="8" height="2" color="#444444" translation="[842,838]" visible="false" />
+    <Rectangle id="graphBar1_33" width="8" height="2" color="#444444" translation="[852,838]" visible="false" />
+    <Rectangle id="graphBar1_34" width="8" height="2" color="#444444" translation="[862,838]" visible="false" />
+    <Rectangle id="graphBar1_35" width="8" height="2" color="#444444" translation="[872,838]" visible="false" />
+
+    <!-- Card 2 -->
+    <Rectangle id="card2"    width="420" height="880" color="#111111" translation="[940,100]" visible="false" />
+    <Rectangle id="cardTop2" width="420" height="8"   color="#444444" translation="[940,100]" visible="false" />
+    <Label id="nameLabel2" text="" translation="[980,130]" color="#FFFFFF" font="font:LargeBoldSystemFont" visible="false" />
+    <Label id="sgvLabel2"  text="" translation="[980,200]" color="#FFFFFF" visible="false"><Font role="font" uri="pkg:/fonts/Roboto_Condensed-Bold.ttf" size="130" /></Label>
+    <Label id="unitLabel2"  text="mg/dL" translation="[980,390]" color="#444444" font="font:SmallSystemFont" visible="false" />
+    <Poster id="arrowImg2" uri="" width="100" height="100" translation="[100,420]" blendColor="#FFFFFF" visible="false" />
+    <Label id="rangeLabel2" text="" translation="[980,550]" color="#888888" font="font:SmallSystemFont" visible="false" />
+    <Label id="deltaLabel2" text="" translation="[980,590]" color="#666666" font="font:SmallSystemFont" visible="false" />
+    <Label id="ageLabel2"   text="" translation="[980,630]" color="#333333" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBg2"    width="380" height="160" color="#0A0A0A" translation="[960,680]" visible="false" />
+    <Rectangle id="graphHiLine2" width="380" height="1"  color="#332200" translation="[960,720]" visible="false" />
+    <Rectangle id="graphLoLine2" width="380" height="1"  color="#220033" translation="[960,820]" visible="false" />
+    <Label id="graphLabel2" text="3h" translation="[962,832]" color="#222222" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBar2_0"  width="8" height="2" color="#444444" translation="[962,838]" visible="false" />
+    <Rectangle id="graphBar2_1"  width="8" height="2" color="#444444" translation="[972,838]" visible="false" />
+    <Rectangle id="graphBar2_2"  width="8" height="2" color="#444444" translation="[982,838]" visible="false" />
+    <Rectangle id="graphBar2_3"  width="8" height="2" color="#444444" translation="[992,838]" visible="false" />
+    <Rectangle id="graphBar2_4"  width="8" height="2" color="#444444" translation="[1002,838]" visible="false" />
+    <Rectangle id="graphBar2_5"  width="8" height="2" color="#444444" translation="[1012,838]" visible="false" />
+    <Rectangle id="graphBar2_6"  width="8" height="2" color="#444444" translation="[1022,838]" visible="false" />
+    <Rectangle id="graphBar2_7"  width="8" height="2" color="#444444" translation="[1032,838]" visible="false" />
+    <Rectangle id="graphBar2_8"  width="8" height="2" color="#444444" translation="[1042,838]" visible="false" />
+    <Rectangle id="graphBar2_9"  width="8" height="2" color="#444444" translation="[1052,838]" visible="false" />
+    <Rectangle id="graphBar2_10" width="8" height="2" color="#444444" translation="[1062,838]" visible="false" />
+    <Rectangle id="graphBar2_11" width="8" height="2" color="#444444" translation="[1072,838]" visible="false" />
+    <Rectangle id="graphBar2_12" width="8" height="2" color="#444444" translation="[1082,838]" visible="false" />
+    <Rectangle id="graphBar2_13" width="8" height="2" color="#444444" translation="[1092,838]" visible="false" />
+    <Rectangle id="graphBar2_14" width="8" height="2" color="#444444" translation="[1102,838]" visible="false" />
+    <Rectangle id="graphBar2_15" width="8" height="2" color="#444444" translation="[1112,838]" visible="false" />
+    <Rectangle id="graphBar2_16" width="8" height="2" color="#444444" translation="[1122,838]" visible="false" />
+    <Rectangle id="graphBar2_17" width="8" height="2" color="#444444" translation="[1132,838]" visible="false" />
+    <Rectangle id="graphBar2_18" width="8" height="2" color="#444444" translation="[1142,838]" visible="false" />
+    <Rectangle id="graphBar2_19" width="8" height="2" color="#444444" translation="[1152,838]" visible="false" />
+    <Rectangle id="graphBar2_20" width="8" height="2" color="#444444" translation="[1162,838]" visible="false" />
+    <Rectangle id="graphBar2_21" width="8" height="2" color="#444444" translation="[1172,838]" visible="false" />
+    <Rectangle id="graphBar2_22" width="8" height="2" color="#444444" translation="[1182,838]" visible="false" />
+    <Rectangle id="graphBar2_23" width="8" height="2" color="#444444" translation="[1192,838]" visible="false" />
+    <Rectangle id="graphBar2_24" width="8" height="2" color="#444444" translation="[1202,838]" visible="false" />
+    <Rectangle id="graphBar2_25" width="8" height="2" color="#444444" translation="[1212,838]" visible="false" />
+    <Rectangle id="graphBar2_26" width="8" height="2" color="#444444" translation="[1222,838]" visible="false" />
+    <Rectangle id="graphBar2_27" width="8" height="2" color="#444444" translation="[1232,838]" visible="false" />
+    <Rectangle id="graphBar2_28" width="8" height="2" color="#444444" translation="[1242,838]" visible="false" />
+    <Rectangle id="graphBar2_29" width="8" height="2" color="#444444" translation="[1252,838]" visible="false" />
+    <Rectangle id="graphBar2_30" width="8" height="2" color="#444444" translation="[1262,838]" visible="false" />
+    <Rectangle id="graphBar2_31" width="8" height="2" color="#444444" translation="[1272,838]" visible="false" />
+    <Rectangle id="graphBar2_32" width="8" height="2" color="#444444" translation="[1282,838]" visible="false" />
+    <Rectangle id="graphBar2_33" width="8" height="2" color="#444444" translation="[1292,838]" visible="false" />
+    <Rectangle id="graphBar2_34" width="8" height="2" color="#444444" translation="[1302,838]" visible="false" />
+    <Rectangle id="graphBar2_35" width="8" height="2" color="#444444" translation="[1312,838]" visible="false" />
+
+    <!-- Card 3 -->
+    <Rectangle id="card3"    width="420" height="880" color="#111111" translation="[1380,100]" visible="false" />
+    <Rectangle id="cardTop3" width="420" height="8"   color="#444444" translation="[1380,100]" visible="false" />
+    <Label id="nameLabel3" text="" translation="[1420,130]" color="#FFFFFF" font="font:LargeBoldSystemFont" visible="false" />
+    <Label id="sgvLabel3"  text="" translation="[1420,200]" color="#FFFFFF" visible="false"><Font role="font" uri="pkg:/fonts/Roboto_Condensed-Bold.ttf" size="130" /></Label>
+    <Label id="unitLabel3"  text="mg/dL" translation="[1420,390]" color="#444444" font="font:SmallSystemFont" visible="false" />
+    <Poster id="arrowImg3" uri="" width="100" height="100" translation="[100,420]" blendColor="#FFFFFF" visible="false" />
+    <Label id="rangeLabel3" text="" translation="[1420,550]" color="#888888" font="font:SmallSystemFont" visible="false" />
+    <Label id="deltaLabel3" text="" translation="[1420,590]" color="#666666" font="font:SmallSystemFont" visible="false" />
+    <Label id="ageLabel3"   text="" translation="[1420,630]" color="#333333" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBg3"    width="380" height="160" color="#0A0A0A" translation="[1400,680]" visible="false" />
+    <Rectangle id="graphHiLine3" width="380" height="1"  color="#332200" translation="[1400,720]" visible="false" />
+    <Rectangle id="graphLoLine3" width="380" height="1"  color="#220033" translation="[1400,820]" visible="false" />
+    <Label id="graphLabel3" text="3h" translation="[1402,832]" color="#222222" font="font:SmallestSystemFont" visible="false" />
+    <Rectangle id="graphBar3_0"  width="8" height="2" color="#444444" translation="[1402,838]" visible="false" />
+    <Rectangle id="graphBar3_1"  width="8" height="2" color="#444444" translation="[1412,838]" visible="false" />
+    <Rectangle id="graphBar3_2"  width="8" height="2" color="#444444" translation="[1422,838]" visible="false" />
+    <Rectangle id="graphBar3_3"  width="8" height="2" color="#444444" translation="[1432,838]" visible="false" />
+    <Rectangle id="graphBar3_4"  width="8" height="2" color="#444444" translation="[1442,838]" visible="false" />
+    <Rectangle id="graphBar3_5"  width="8" height="2" color="#444444" translation="[1452,838]" visible="false" />
+    <Rectangle id="graphBar3_6"  width="8" height="2" color="#444444" translation="[1462,838]" visible="false" />
+    <Rectangle id="graphBar3_7"  width="8" height="2" color="#444444" translation="[1472,838]" visible="false" />
+    <Rectangle id="graphBar3_8"  width="8" height="2" color="#444444" translation="[1482,838]" visible="false" />
+    <Rectangle id="graphBar3_9"  width="8" height="2" color="#444444" translation="[1492,838]" visible="false" />
+    <Rectangle id="graphBar3_10" width="8" height="2" color="#444444" translation="[1502,838]" visible="false" />
+    <Rectangle id="graphBar3_11" width="8" height="2" color="#444444" translation="[1512,838]" visible="false" />
+    <Rectangle id="graphBar3_12" width="8" height="2" color="#444444" translation="[1522,838]" visible="false" />
+    <Rectangle id="graphBar3_13" width="8" height="2" color="#444444" translation="[1532,838]" visible="false" />
+    <Rectangle id="graphBar3_14" width="8" height="2" color="#444444" translation="[1542,838]" visible="false" />
+    <Rectangle id="graphBar3_15" width="8" height="2" color="#444444" translation="[1552,838]" visible="false" />
+    <Rectangle id="graphBar3_16" width="8" height="2" color="#444444" translation="[1562,838]" visible="false" />
+    <Rectangle id="graphBar3_17" width="8" height="2" color="#444444" translation="[1572,838]" visible="false" />
+    <Rectangle id="graphBar3_18" width="8" height="2" color="#444444" translation="[1582,838]" visible="false" />
+    <Rectangle id="graphBar3_19" width="8" height="2" color="#444444" translation="[1592,838]" visible="false" />
+    <Rectangle id="graphBar3_20" width="8" height="2" color="#444444" translation="[1602,838]" visible="false" />
+    <Rectangle id="graphBar3_21" width="8" height="2" color="#444444" translation="[1612,838]" visible="false" />
+    <Rectangle id="graphBar3_22" width="8" height="2" color="#444444" translation="[1622,838]" visible="false" />
+    <Rectangle id="graphBar3_23" width="8" height="2" color="#444444" translation="[1632,838]" visible="false" />
+    <Rectangle id="graphBar3_24" width="8" height="2" color="#444444" translation="[1642,838]" visible="false" />
+    <Rectangle id="graphBar3_25" width="8" height="2" color="#444444" translation="[1652,838]" visible="false" />
+    <Rectangle id="graphBar3_26" width="8" height="2" color="#444444" translation="[1662,838]" visible="false" />
+    <Rectangle id="graphBar3_27" width="8" height="2" color="#444444" translation="[1672,838]" visible="false" />
+    <Rectangle id="graphBar3_28" width="8" height="2" color="#444444" translation="[1682,838]" visible="false" />
+    <Rectangle id="graphBar3_29" width="8" height="2" color="#444444" translation="[1692,838]" visible="false" />
+    <Rectangle id="graphBar3_30" width="8" height="2" color="#444444" translation="[1702,838]" visible="false" />
+    <Rectangle id="graphBar3_31" width="8" height="2" color="#444444" translation="[1712,838]" visible="false" />
+    <Rectangle id="graphBar3_32" width="8" height="2" color="#444444" translation="[1722,838]" visible="false" />
+    <Rectangle id="graphBar3_33" width="8" height="2" color="#444444" translation="[1732,838]" visible="false" />
+    <Rectangle id="graphBar3_34" width="8" height="2" color="#444444" translation="[1742,838]" visible="false" />
+    <Rectangle id="graphBar3_35" width="8" height="2" color="#444444" translation="[1752,838]" visible="false" />
+
+    <!-- Loading overlay -->
+    <Rectangle id="loadingOverlay" width="1920" height="1080" color="#000000" visible="true">
+      <Label id="loadingMsg" text="Loading..." width="1920" horizAlign="center" translation="[0,510]" color="#FFFFFF" font="font:LargeBoldSystemFont" />
+    </Rectangle>
+
+    <!-- Settings scene (shown on demand) -->
+    <SettingsScene id="settingsScene" visible="false" />
+
+    <!-- Disclaimer scene (shown on first launch) -->
+    <DisclaimerScene id="disclaimerScene" visible="true" />
+
+    <!-- Footer -->
+    <Rectangle width="1920" height="1" color="#222222" translation="[0,1040]" />
+    <Label text="OPTIONS = settings   BACK = exit" translation="[60,1052]" color="#2A2A2A" font="font:SmallestSystemFont" />
+    <Label id="statusLabel" text="" translation="[0,1052]" width="1860" horizAlign="right" color="#2A2A2A" font="font:SmallestSystemFont" />
+
+  </children>
+</component>

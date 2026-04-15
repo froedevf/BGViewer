@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DisclaimerScene" extends="Group">
+  <interface>
+    <field id="accepted" type="boolean" value="false" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/DisclaimerScene.brs" />
+  <children>
+
+    <!-- Full-screen dark overlay -->
+    <Rectangle id="disclaimerBg" width="1920" height="1080" color="#0A0A0A" translation="[0,0]" />
+
+    <!-- Top accent bar -->
+    <Rectangle id="accentBar" width="1920" height="6" color="#FF6B00" translation="[0,0]" />
+
+    <!-- App title: translation x=0, width=1920 so horizAlign=center works across full screen -->
+    <Label id="appTitle"
+      text="NIGHTSCOUT VIEWER"
+      translation="[0,80]"
+      horizAlign="center"
+      color="#FFFFFF"
+      font="font:LargeBoldSystemFont"
+      width="1920" />
+
+    <!-- Warning icon: centered at x=920 (1920/2 - 40) -->
+    <Rectangle id="warnBox" width="80" height="80" color="#FF6B00" translation="[920,165]" />
+    <Label id="warnIcon"
+      text="!"
+      translation="[920,163]"
+      horizAlign="center"
+      color="#000000"
+      font="font:LargeBoldSystemFont"
+      width="80" />
+
+    <!-- Main disclaimer heading: full-width centered -->
+    <Label id="disclaimerHeading"
+      text="IMPORTANT DISCLAIMER"
+      translation="[0,270]"
+      horizAlign="center"
+      color="#FF6B00"
+      font="font:LargeBoldSystemFont"
+      width="1920" />
+
+    <!-- Disclaimer body: left-aligned block centered on screen (x=260, width=1400 => centered in 1920) -->
+    <Label id="disclaimerLine1"
+      text="This application is provided for INFORMATIONAL PURPOSES ONLY."
+      translation="[260,360]"
+      color="#FFFFFF"
+      font="font:MediumBoldSystemFont"
+      width="1400" />
+
+    <Label id="disclaimerLine2"
+      text="It displays blood glucose data from a Nightscout server and is NOT a medical device."
+      translation="[260,408]"
+      color="#CCCCCC"
+      font="font:MediumSystemFont"
+      width="1400" />
+
+    <Rectangle id="divider1" width="1400" height="2" color="#333333" translation="[260,458]" />
+
+    <Label id="disclaimerLine3"
+      text="DO NOT use this application to make insulin dosage decisions,"
+      translation="[260,474]"
+      color="#FF4444"
+      font="font:MediumBoldSystemFont"
+      width="1400" />
+
+    <Label id="disclaimerLine4"
+      text="treatment changes, or any other medical decisions."
+      translation="[260,518]"
+      color="#FF4444"
+      font="font:MediumBoldSystemFont"
+      width="1400" />
+
+    <Rectangle id="divider2" width="1400" height="2" color="#333333" translation="[260,568]" />
+
+    <Label id="disclaimerLine5"
+      text="Always rely on your primary CGM device and consult your healthcare provider"
+      translation="[260,584]"
+      color="#CCCCCC"
+      font="font:MediumSystemFont"
+      width="1400" />
+
+    <Label id="disclaimerLine6"
+      text="for all medical decisions. This tool may display delayed or inaccurate data."
+      translation="[260,628]"
+      color="#CCCCCC"
+      font="font:MediumSystemFont"
+      width="1400" />
+
+    <Label id="disclaimerLine7"
+      text="THE AUTHOR PROVIDES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED."
+      translation="[260,678]"
+      color="#888888"
+      font="font:SmallBoldSystemFont"
+      width="1400" />
+
+    <!-- Accept button: wider (600px) and properly centered (x = (1920-600)/2 = 660) -->
+    <Rectangle id="acceptBtn" width="600" height="72" color="#FF6B00" translation="[660,780]" />
+    <Label id="acceptLabel"
+      text="I UNDERSTAND - CONTINUE"
+      translation="[660,797]"
+      horizAlign="center"
+      color="#000000"
+      font="font:MediumBoldSystemFont"
+      width="600" />
+
+    <!-- Footer hint: full-width centered, translation x=0 -->
+    <Label id="disclaimerHint"
+      text="Press OK or PLAY to continue"
+      translation="[0,888]"
+      horizAlign="center"
+      color="#444444"
+      font="font:SmallSystemFont"
+      width="1920" />
+
+  </children>
+</component>
