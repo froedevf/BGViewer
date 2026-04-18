@@ -117,10 +117,6 @@ function countActive(accounts as Object) as Integer
     return n
 end function
 
-function isActiveUrl(url as String) as Boolean
-    return url <> ""
-end function
-
 ' ================================================================
 ' CARD LAYOUT
 ' ================================================================
@@ -391,19 +387,22 @@ sub fetchAll()
     end for
     checkDone()
 end sub
-sub onResult0() : handleResult(0, m.tasks[0].result) : end sub
-sub onResult1() : handleResult(1, m.tasks[1].result) : end sub
-sub onResult2() : handleResult(2, m.tasks[2].result) : end sub
-sub onResult3() : handleResult(3, m.tasks[3].result) : end sub
-sub onError0()  : handleError(0, m.tasks[0].fetchError) : end sub
-sub onError1()  : handleError(1, m.tasks[1].fetchError) : end sub
-sub onError2()  : handleError(2, m.tasks[2].fetchError) : end sub
-sub onError3()  : handleError(3, m.tasks[3].fetchError) : end sub
+' Guard against stale callbacks firing after fetchAll() has already cleared m.tasks.
+' A slow/timed-out request completing in the next refresh cycle would otherwise
+' crash the render thread with a null dereference, exiting the channel.
+sub onResult0() : if m.tasks[0] = invalid then return : handleResult(0, m.tasks[0].result) : end sub
+sub onResult1() : if m.tasks[1] = invalid then return : handleResult(1, m.tasks[1].result) : end sub
+sub onResult2() : if m.tasks[2] = invalid then return : handleResult(2, m.tasks[2].result) : end sub
+sub onResult3() : if m.tasks[3] = invalid then return : handleResult(3, m.tasks[3].result) : end sub
+sub onError0()  : if m.tasks[0] = invalid then return : handleError(0, m.tasks[0].fetchError) : end sub
+sub onError1()  : if m.tasks[1] = invalid then return : handleError(1, m.tasks[1].fetchError) : end sub
+sub onError2()  : if m.tasks[2] = invalid then return : handleError(2, m.tasks[2].fetchError) : end sub
+sub onError3()  : if m.tasks[3] = invalid then return : handleError(3, m.tasks[3].fetchError) : end sub
 
-sub onHistResult0() : handleHistResult(0, m.histTasks[0].result) : end sub
-sub onHistResult1() : handleHistResult(1, m.histTasks[1].result) : end sub
-sub onHistResult2() : handleHistResult(2, m.histTasks[2].result) : end sub
-sub onHistResult3() : handleHistResult(3, m.histTasks[3].result) : end sub
+sub onHistResult0() : if m.histTasks[0] = invalid then return : handleHistResult(0, m.histTasks[0].result) : end sub
+sub onHistResult1() : if m.histTasks[1] = invalid then return : handleHistResult(1, m.histTasks[1].result) : end sub
+sub onHistResult2() : if m.histTasks[2] = invalid then return : handleHistResult(2, m.histTasks[2].result) : end sub
+sub onHistResult3() : if m.histTasks[3] = invalid then return : handleHistResult(3, m.histTasks[3].result) : end sub
 sub onHistError0()  : handleHistError(0) : end sub
 sub onHistError1()  : handleHistError(1) : end sub
 sub onHistError2()  : handleHistError(2) : end sub
@@ -537,7 +536,7 @@ end function
 
 ' Parse Dexcom Share response (array of {Value, Trend, WT}) into Nightscout-style entry
 
-function parseDexcomWt(wt as String)
+function parseDexcomWt(wt as String) as Dynamic
     startPos = Instr(1, wt, "(")
     endPos   = Instr(1, wt, ")")
     if startPos > 0 and endPos > startPos
