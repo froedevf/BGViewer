@@ -21,7 +21,6 @@ sub doFetch()
     xfer.SetUrl(url)
     xfer.SetCertificatesFile("common:/certs/ca-bundle.crt")
     xfer.InitClientCertificates()
-    xfer.EnableFreshConnection(true)
     xfer.AddHeader("User-Agent", "RokuCGM/1.0 BrightScript")
     xfer.AddHeader("Accept",     "application/json")
 

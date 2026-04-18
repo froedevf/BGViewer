@@ -1,17 +1,12 @@
 ' ScreensaverTask.brs
-' Pings roAppManager every 30s to suppress the screensaver.
-' Must run in a Task node - roAppManager fails on render thread.
+' Previously suppressed the screensaver via UpdateLastKeyPressTime().
+' That API is no longer permitted; the task is retained as a no-op
+' so the rest of the channel does not need to be restructured.
 
 sub init()
     m.top.functionName = "run"
 end sub
 
 sub run()
-    appManager = CreateObject("roAppManager")
-    if appManager = invalid then return
-    msgPort = CreateObject("roMessagePort")
-    while true
-        appManager.UpdateLastKeyPressTime()
-        wait(30000, msgPort)
-    end while
+    ' UpdateLastKeyPressTime() is a banned API - screensaver suppression removed.
 end sub

@@ -72,7 +72,6 @@ function postJson(url as String, body as String) as String
     xfer.SetUrl(url)
     xfer.SetCertificatesFile("common:/certs/ca-bundle.crt")
     xfer.InitClientCertificates()
-    xfer.EnableFreshConnection(true)
     xfer.AddHeader("Content-Type", "application/json")
     xfer.AddHeader("Accept", "application/json")
     msgPort = CreateObject("roMessagePort")
