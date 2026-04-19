@@ -1,12 +1,27 @@
 ' ScreensaverTask.brs
-' Previously suppressed the screensaver via UpdateLastKeyPressTime().
-' That API is no longer permitted; the task is retained as a no-op
-' so the rest of the channel does not need to be restructured.
+' Plays a silent audio clip on loop to keep the channel active and prevent
+' Roku's OS-level inactivity timeout from exiting the app.
 
 sub init()
     m.top.functionName = "run"
 end sub
 
 sub run()
-    ' UpdateLastKeyPressTime() is a banned API - screensaver suppression removed.
+    audioPlayer = CreateObject("roAudioPlayer")
+    if audioPlayer = invalid then return
+
+    msgPort = CreateObject("roMessagePort")
+    audioPlayer.SetMessagePort(msgPort)
+
+    content = CreateObject("roAssociativeArray")
+    content.url = "pkg:/audio/silence.wav"
+    content.StreamFormat = "wav"
+
+    audioPlayer.AddContent(content)
+    audioPlayer.SetLoop(true)
+    audioPlayer.Play()
+
+    while true
+        wait(0, msgPort)
+    end while
 end sub
