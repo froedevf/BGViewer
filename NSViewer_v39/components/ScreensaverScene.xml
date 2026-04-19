@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  ScreensaverScene - dashboard-only scene used when the channel is
-  launched as a Roku screensaver (RunAsScreenSaver = true).
+  ScreensaverScene - the sole BGViewer data display. Rendered when
+  Roku launches BGViewer as the active screensaver
+  (RunAsScreenSaver = true).
 
-  Shares Dashboard.brs with MainScene. No disclaimer, no settings UI,
-  no key handling - Roku dismisses the screensaver on any key press.
+  The BGViewer channel (MainScene) is setup-only and does not
+  render glucose data. All dashboard logic lives in Dashboard.brs
+  and runs here in the screensaver lifecycle.
 
-  Account configuration is done in the regular channel (MainScene);
-  accounts are read from the shared roRegistrySection("nightscout").
+  No disclaimer, no settings UI, no key handling in this scene -
+  Roku dismisses the screensaver automatically on any key press.
+  Accounts are read from roRegistrySection("nightscout"), which
+  is populated by SettingsScene in the channel.
 -->
 <component name="ScreensaverScene" extends="Scene">
   <script type="text/brightscript" uri="pkg:/source/RegistryUtils.brs" />

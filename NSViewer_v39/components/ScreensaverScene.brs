@@ -1,15 +1,18 @@
 ' ============================================================
-' ScreensaverScene.brs  -  BGViewer Dashboard (screensaver mode)
+' ScreensaverScene.brs  -  BGViewer Dashboard
 '
-' Entry point used when Roku launches this channel as a screensaver
-' (args.RunAsScreenSaver = true). No disclaimer, no settings UI.
-' Account configuration is handled in the regular channel
-' (MainScene); we read accounts from the shared registry.
+' This scene is BGViewer's only data display. It is rendered
+' exclusively via the Roku screensaver lifecycle, when the OS
+' launches this channel with args.RunAsScreenSaver = true.
+'
+' The BGViewer channel entry point (MainScene) is a setup-only
+' shell: medical disclaimer + account configuration. It does
+' not render glucose data.
 '
 ' Roku dismisses the screensaver automatically on any key press,
-' so this scene does not implement onKeyEvent.
-'
-' Dashboard rendering / fetching / parsing is provided by
+' so this scene does not implement onKeyEvent. Accounts are read
+' from roRegistrySection("nightscout") via RegistryUtils.brs;
+' dashboard rendering / fetching / parsing lives in
 ' pkg:/source/Dashboard.brs.
 ' ============================================================
 

@@ -2,8 +2,12 @@
 ' main.brs  -  BGViewer (Blood Glucose Viewer)
 '
 ' Two entry modes:
-'   - Normal channel launch  -> MainScene (disclaimer, settings, dashboard)
-'   - Screensaver launch     -> ScreensaverScene (dashboard only)
+'   - Normal channel launch  -> MainScene (setup only: disclaimer
+'                               + account configuration; no data
+'                               display).
+'   - Screensaver launch     -> ScreensaverScene (the dashboard;
+'                               this is the only place glucose
+'                               data is rendered).
 '
 ' Roku passes args.RunAsScreenSaver = true when the OS is launching
 ' this channel as the active screensaver.

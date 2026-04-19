@@ -1,8 +1,11 @@
 ' ============================================================
 ' Dashboard.brs
-' Shared dashboard logic used by both MainScene (channel) and
-' ScreensaverScene (screensaver). Operates on `m.*` fields that
-' the hosting component's init() is expected to set up:
+' Dashboard rendering / fetching / parsing for BGViewer. Used
+' exclusively by ScreensaverScene - the BGViewer channel shell
+' (MainScene) is setup-only and does not call into this file.
+'
+' Operates on `m.*` fields that ScreensaverScene's init() sets
+' up via wireDashboardNodes() + dashboardSharedInit():
 '
 '   m.loadingOverlay, m.loadingMsg, m.clockLabel, m.statusLabel
 '   m.cards[], m.cardTops[], m.nameLabels[], m.sgvLabels[], m.unitLabels[]
@@ -13,7 +16,8 @@
 '   m.accounts, m.activeCount, m.tasks[], m.histTasks[], m.results[],
 '   m.histResults[], m.deltaReady[], m.dexSessions[], m.dexTicks[]
 '   m.doneCount, m.histDoneCount, m.secsLeft
-'   m.inSettings, m.inDisclaimer    (set to false in screensaver mode)
+'   m.inSettings, m.inDisclaimer    (both always false here; kept
+'                                    for call-site compatibility)
 '   m.clockTimer
 '   m.REFRESH_SEC, m.DEX_REFRESH, m.GRAPH_*
 ' ============================================================
