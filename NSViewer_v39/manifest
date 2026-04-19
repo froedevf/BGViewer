@@ -2,7 +2,7 @@ title=Blood Glucose Viewer
 subtitle=Live blood glucose monitor
 major_version=1
 minor_version=1
-build_version=00002
+build_version=00003
 
 ui_resolutions=fhd
 mm_icon_focus_hd=pkg:/images/icon_focus_hd.png
