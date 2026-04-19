@@ -1,39 +1,43 @@
 ' ScreensaverTask.brs
-' Plays a silent audio clip on loop to keep the channel active and prevent
-' Roku's OS-level inactivity timeout from exiting the app.
+' Plays a silent looping video to satisfy Roku's OS-level video watchdog
+' and prevent the channel from being exited after ~130 minutes of non-video activity.
 
 sub init()
     m.top.functionName = "run"
 end sub
 
 sub run()
-    print "[ScreensaverTask] starting audio keep-alive"
-    audioPlayer = CreateObject("roAudioPlayer")
-    if audioPlayer = invalid
-        print "[ScreensaverTask] ERROR: roAudioPlayer is invalid"
+    print "[ScreensaverTask] starting video keep-alive"
+    videoPlayer = CreateObject("roVideoPlayer")
+    if videoPlayer = invalid
+        print "[ScreensaverTask] ERROR: roVideoPlayer is invalid"
         return
     end if
 
     msgPort = CreateObject("roMessagePort")
-    audioPlayer.SetMessagePort(msgPort)
+    videoPlayer.SetMessagePort(msgPort)
 
     content = CreateObject("roAssociativeArray")
-    content.url = "pkg:/audio/silence.wav"
-    content.StreamFormat = "wav"
+    content.url = "pkg:/video/keepalive.mp4"
+    content.StreamFormat = "mp4"
+    content.Loop = true
 
-    audioPlayer.AddContent(content)
-    audioPlayer.SetLoop(true)
-    ok = audioPlayer.Play()
+    videoPlayer.SetContent(content)
+    videoPlayer.SetLoop(true)
+    ok = videoPlayer.Play()
     print "[ScreensaverTask] Play() returned: " + ok.toStr()
 
     while true
         msg = wait(0, msgPort)
-        if type(msg) = "roAudioPlayerEvent"
-            print "[ScreensaverTask] audio event: " + msg.getMessage() + " index=" + msg.getIndex().toStr()
-            if msg.isRequestFailed()
-                print "[ScreensaverTask] ERROR: audio failed, retrying..."
-                audioPlayer.Stop()
-                audioPlayer.Play()
+        if type(msg) = "roVideoPlayerEvent"
+            print "[ScreensaverTask] video event: " + msg.getMessage()
+            if msg.isRequestFailed() or msg.isError()
+                print "[ScreensaverTask] ERROR: " + msg.getMessage() + " - retrying..."
+                videoPlayer.Stop()
+                videoPlayer.Play()
+            end if
+            if msg.isPlaybackPosition()
+                ' Looping - do nothing
             end if
         end if
     end while
