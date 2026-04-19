@@ -1,4 +1,4 @@
-title=Nightscout Viewer
+title=Blood Glucose Viewer
 subtitle=Live blood glucose monitor
 major_version=1
 minor_version=1
@@ -14,3 +14,9 @@ splash_min_time=1200
 rsg_version=1.2
 network_use=1
 bs_const=DEBUG=false
+
+# Screensaver registration - lets this channel be selected as a Roku screensaver.
+# Screensavers are the platform-approved lifecycle for continuous on-screen display.
+screensaver_title=Blood Glucose Viewer
+screensaver_private=1
+screensaver_thumbnail_fhd=pkg:/images/icon_focus_hd.png

@@ -15,7 +15,7 @@
 
     <Rectangle id="settingsBg" width="1920" height="1080" color="#000000" />
     <Rectangle id="hdrBar" width="1920" height="80" color="#111111" translation="[0,0]" />
-    <Label id="hdrTitle" text="NIGHTSCOUT VIEWER  -  SETTINGS"
+    <Label id="hdrTitle" text="BLOOD GLUCOSE VIEWER  -  SETTINGS"
       translation="[60,22]" color="#FFFFFF" font="font:LargeBoldSystemFont" />
 
     <!-- TABLE VIEW -->

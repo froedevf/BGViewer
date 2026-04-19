@@ -14,7 +14,7 @@
 
     <!-- App title: translation x=0, width=1920 so horizAlign=center works across full screen -->
     <Label id="appTitle"
-      text="NIGHTSCOUT VIEWER"
+      text="BLOOD GLUCOSE VIEWER"
       translation="[0,80]"
       horizAlign="center"
       color="#FFFFFF"
@@ -49,7 +49,7 @@
       width="1400" />
 
     <Label id="disclaimerLine2"
-      text="It displays blood glucose data from a Nightscout server and is NOT a medical device."
+      text="It displays blood glucose data from your configured CGM source and is NOT a medical device."
       translation="[260,408]"
       color="#CCCCCC"
       font="font:MediumSystemFont"

@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="MainScene" extends="Scene">
+<!--
+  ScreensaverScene - dashboard-only scene used when the channel is
+  launched as a Roku screensaver (RunAsScreenSaver = true).
+
+  Shares Dashboard.brs with MainScene. No disclaimer, no settings UI,
+  no key handling - Roku dismisses the screensaver on any key press.
+
+  Account configuration is done in the regular channel (MainScene);
+  accounts are read from the shared roRegistrySection("nightscout").
+-->
+<component name="ScreensaverScene" extends="Scene">
   <script type="text/brightscript" uri="pkg:/source/RegistryUtils.brs" />
   <script type="text/brightscript" uri="pkg:/source/Dashboard.brs" />
-  <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
+  <script type="text/brightscript" uri="pkg:/components/ScreensaverScene.brs" />
   <children>
 
     <Rectangle id="bg" width="1920" height="1080" color="#000000" />
@@ -20,12 +30,10 @@
     <Label id="nameLabel0" text="" translation="[100,130]" color="#FFFFFF" font="font:LargeBoldSystemFont" visible="false" />
     <Label id="sgvLabel0"  text="" translation="[100,200]" color="#FFFFFF" visible="false"><Font role="font" uri="pkg:/fonts/Roboto_Condensed-Bold.ttf" size="130" /></Label>
     <Label id="unitLabel0"  text="mg/dL" translation="[100,390]" color="#444444" font="font:SmallSystemFont" visible="false" />
-    <!-- Arrow segments for trend indicator (card 0): shaft + 4 wing pieces -->
     <Poster id="arrowImg0" uri="" width="100" height="100" translation="[100,420]" blendColor="#FFFFFF" visible="false" />
     <Label id="rangeLabel0" text="" translation="[100,550]" color="#888888" font="font:SmallSystemFont" visible="false" />
     <Label id="deltaLabel0" text="" translation="[100,590]" color="#666666" font="font:SmallSystemFont" visible="false" />
     <Label id="ageLabel0"   text="" translation="[100,630]" color="#333333" font="font:SmallestSystemFont" visible="false" />
-    <!-- Graph area card 0: background + threshold lines + 36 dots -->
     <Rectangle id="graphBg0"    width="380" height="160" color="#0A0A0A" translation="[80,680]" visible="false" />
     <Rectangle id="graphHiLine0" width="380" height="1"  color="#332200" translation="[80,720]" visible="false" />
     <Rectangle id="graphLoLine0" width="380" height="1"  color="#220033" translation="[80,820]" visible="false" />
@@ -220,20 +228,13 @@
     <Rectangle id="graphBar3_34" width="8" height="2" color="#444444" translation="[1742,838]" visible="false" />
     <Rectangle id="graphBar3_35" width="8" height="2" color="#444444" translation="[1752,838]" visible="false" />
 
-    <!-- Loading overlay -->
+    <!-- Loading / no-accounts overlay -->
     <Rectangle id="loadingOverlay" width="1920" height="1080" color="#000000" visible="true">
       <Label id="loadingMsg" text="Loading..." width="1920" horizAlign="center" translation="[0,510]" color="#FFFFFF" font="font:LargeBoldSystemFont" />
     </Rectangle>
 
-    <!-- Settings scene (shown on demand) -->
-    <SettingsScene id="settingsScene" visible="false" />
-
-    <!-- Disclaimer scene (shown on first launch) -->
-    <DisclaimerScene id="disclaimerScene" visible="true" />
-
     <!-- Footer -->
     <Rectangle width="1920" height="1" color="#222222" translation="[0,1040]" />
-    <Label text="OPTIONS = settings   BACK = exit" translation="[60,1052]" color="#2A2A2A" font="font:SmallestSystemFont" />
     <Label id="statusLabel" text="" translation="[0,1052]" width="1860" horizAlign="right" color="#2A2A2A" font="font:SmallestSystemFont" />
 
   </children>
