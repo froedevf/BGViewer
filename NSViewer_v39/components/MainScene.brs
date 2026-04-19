@@ -94,7 +94,20 @@ sub onDisclaimerAccepted()
     if not m.disclaimerScene.accepted then return
     m.disclaimerScene.visible = false
     m.inDisclaimer = false
+    startKeepAliveVideo()
     loadAndStart()
+end sub
+
+sub startKeepAliveVideo()
+    video = m.top.findNode("keepAliveVideo")
+    if video = invalid then return
+    content = CreateObject("roSGNode", "ContentNode")
+    content.url = "pkg:/video/keepalive.mp4"
+    content.streamFormat = "mp4"
+    video.content = content
+    video.loop = true
+    video.control = "play"
+    print "[BGViewer] keep-alive video started"
 end sub
 
 sub loadAndStart()

@@ -235,5 +235,8 @@
     <Label text="OPTIONS = settings   BACK = exit" translation="[60,1052]" color="#2A2A2A" font="font:SmallestSystemFont" />
     <Label id="statusLabel" text="" translation="[0,1052]" width="1860" horizAlign="right" color="#2A2A2A" font="font:SmallestSystemFont" />
 
+    <!-- Silent 1x1 video loop - keeps Roku OS watchdog from exiting the channel -->
+    <Video id="keepAliveVideo" translation="[-10, -10]" width="1" height="1" />
+
   </children>
 </component>
