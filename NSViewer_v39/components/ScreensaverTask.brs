@@ -7,8 +7,12 @@ sub init()
 end sub
 
 sub run()
+    print "[ScreensaverTask] starting audio keep-alive"
     audioPlayer = CreateObject("roAudioPlayer")
-    if audioPlayer = invalid then return
+    if audioPlayer = invalid
+        print "[ScreensaverTask] ERROR: roAudioPlayer is invalid"
+        return
+    end if
 
     msgPort = CreateObject("roMessagePort")
     audioPlayer.SetMessagePort(msgPort)
@@ -19,9 +23,18 @@ sub run()
 
     audioPlayer.AddContent(content)
     audioPlayer.SetLoop(true)
-    audioPlayer.Play()
+    ok = audioPlayer.Play()
+    print "[ScreensaverTask] Play() returned: " + ok.toStr()
 
     while true
-        wait(0, msgPort)
+        msg = wait(0, msgPort)
+        if type(msg) = "roAudioPlayerEvent"
+            print "[ScreensaverTask] audio event: " + msg.getMessage() + " index=" + msg.getIndex().toStr()
+            if msg.isRequestFailed()
+                print "[ScreensaverTask] ERROR: audio failed, retrying..."
+                audioPlayer.Stop()
+                audioPlayer.Play()
+            end if
+        end if
     end while
 end sub
