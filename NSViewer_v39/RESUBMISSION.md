@@ -36,7 +36,9 @@ When you upload this build to the Roku Partner Portal, make sure:
 Confirm the manifest does NOT contain:
 - `screensaver_private=1`  (re-adding this would re-trigger 4.5)
 - Any `Video` node in `MainScene`, `ScreensaverScene`, or tasks
+- Any `Audio`/`Sound` node, or looping audio
 - `video/keepalive.mp4` (deleted in build 1.1.00003)
+- `audio/silence.wav` (deleted in build 1.2.00003)
 - `components/ScreensaverTask.{brs,xml}` (deleted in build 1.1.00003)
 
 ## Version history of cert-related changes
@@ -46,3 +48,8 @@ Confirm the manifest does NOT contain:
   logic moved out of `MainScene` and into `ScreensaverScene`.
 - 1.2.00002 - Removed `screensaver_private=1` from the manifest.
   Package now registers as a public screensaver.
+- 1.2.00003 - Deleted orphaned `audio/silence.wav`. Silent audio
+  played in a loop defeats the system screensaver the same way a
+  keep-alive video does; the mere presence of this asset in the
+  package invites a 4.5 flag even though nothing in the source
+  referenced it.
