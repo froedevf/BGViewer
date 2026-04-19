@@ -2,7 +2,7 @@ title=Blood Glucose Viewer
 subtitle=CGM screensaver for Nightscout and Dexcom Share
 major_version=1
 minor_version=2
-build_version=00001
+build_version=00002
 
 ui_resolutions=fhd
 mm_icon_focus_hd=pkg:/images/icon_focus_hd.png
@@ -15,8 +15,20 @@ rsg_version=1.2
 network_use=1
 bs_const=DEBUG=false
 
-# Screensaver registration - lets this channel be selected as a Roku screensaver.
-# Screensavers are the platform-approved lifecycle for continuous on-screen display.
+# ------------------------------------------------------------
+# Public screensaver registration.
+#
+# This package is submitted in the Roku Partner Portal as a
+# Screensaver (channel type = Screensaver), NOT as a streaming
+# channel. The screensaver is user-selectable from
+#   Settings > Screensaver > Change screensaver
+# which is the platform-approved lifecycle for continuous
+# on-screen display.
+#
+# Do NOT add screensaver_private=1 here. That key would make
+# this an "in-channel" screensaver (runs only while the channel
+# is open, hidden from the system picker) which is a direct
+# violation of Roku cert rule 4.5.
+# ------------------------------------------------------------
 screensaver_title=Blood Glucose Viewer
-screensaver_private=1
 screensaver_thumbnail_fhd=pkg:/images/icon_focus_hd.png
